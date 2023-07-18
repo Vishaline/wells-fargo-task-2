@@ -1,47 +1,47 @@
 package com.wellsfargo.counselor.entity;
 
-import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 
 @Entity
 public class Portfolio {
+
     @Id
     @GeneratedValue()
     private long portfolioId;
 
-    @OneToMany
+    @ManyToOne
     private Client client;
 
-    @Temporal(TemporalType.DATE);
-    private Date createDate;
+    @Column(nullable = false)
+    private String creationDate;
 
     protected Portfolio() {
 
     }
 
-    public Client(Date createDate) {
-        this.createDate = firstName;
-
-
+    public Portfolio(Client client, String creationDate) {
+        this.client = client;
+        this.creationDate = creationDate;
     }
 
-    public Client getClient(){return client;}
-
-    public Date getCreateDate() {
-        return createDate;
+    public Long getPortfolioId() {
+        return portfolioId;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public Client getCLient() {
+        return client;
     }
 
-}
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
 }
